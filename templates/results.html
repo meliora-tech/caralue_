@@ -1,0 +1,192 @@
+{%  extends "layout.html" %}
+
+
+{% block custom_head %}
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Average price and median -->
+<section class="container text-center" >
+    <br>
+    <h3> {{car_name}} </h3>
+
+    <br>
+    <h5> Average price and mileage by Model year</h5>
+    
+       <table class="table">
+            <thead>
+                <th>
+                    Year
+                </th>
+                <th>
+                    Price (R)
+                </th>
+                <th>
+                    Mileage (Km)
+                </th>
+            </thead>
+
+            <tbody>
+                {% for item in avg %}
+                 <tr>
+                     <td>
+                        {{ item.year}}
+                     </td>
+                     <td>
+                        R {{ item.price | round(1) }}
+                     </td>
+                     <td>
+                        {{ item.mileage | round(1)}}
+                     </td>
+                 </tr>
+                {%  endfor %}
+            </tbody>
+       </table>
+       <br>
+
+    </section>
+
+ <!-- Median price and mileage -->
+ <section class="container text-center">      
+       <h5>Median price and mileage by Model year</h5>
+
+        <table class="table">
+                <thead>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Price (R)
+                    </th>
+                    <th>
+                        Mileage (Km)
+                    </th>
+                </thead>
+
+                <tbody>
+                    {% for item in median %}
+                    <tr>
+                        <td>
+                            {{ item.year}}
+                        </td>
+                        <td>
+                            R {{ item.price | round(1) }}
+                        </td>
+                        <td>
+                            {{ item.mileage | round(1)}}
+                        </td>
+                    </tr>
+                    {%  endfor %}
+                </tbody>
+        </table>
+        <br>    
+    </section>      
+      
+
+    <!-- Section of price distrution by year -->    
+    <section class="container text-center">
+
+        <h5> The distribution of the price by year and mileage range </h5>
+        <br>
+
+         <ul class="nav nav-tabs" id="myTab" role="tablist">
+            
+            {% for year, d in all_dict.items() %}
+                <!-- Display the tab labels -->
+                {% if loop.index == 1 %}
+                    <li class="nav-item">
+                      <a class="nav-link active" id="{{year}}-tab" data-toggle="tab" href="#year-{{year}}" role="tab" aria-controls="year-{{year}}" aria-selected="true">{{year}}</a>
+                    </li>
+                {% else %}
+                  <li class="nav-item">
+                     <a class="nav-link" id="{{year}}-tab" data-toggle="tab" href="#year-{{year}}" role="tab" aria-controls="year-{{year}}" aria-selected="false">{{year}}</a>
+                  </li>
+                {% endif %}  
+                
+            {% endfor %}
+
+
+                <!-- Display the content for each tab -->
+            
+                <div class="tab-content" id="myTabContent">
+                    {%  for year, d in all_dict.items() %}
+                            {%  if loop.index == 1 %}
+                                <div class="tab-pane fade show active" id="year-{{year}}" role="tabpanel" aria-labelledby="{{year}}-tab"> 
+                                     <br>
+                                     <br>
+                                    <canvas id="{{year}}-chart" width="400" height="400"></canvas>
+
+
+                                </div>
+
+                            {% else %}
+                                <div class="tab-pane fade" id="year-{{year}}" role="tabpanel" aria-labelledby="{{year}}-tab">
+                                      
+                                      <p style="color: #fff;"> Lorem ipsum dolor sit amet, consectetur adipisc</p>
+                                      <br>
+                                      <br>
+                                   <canvas id="{{year}}-chart"  style="width: 400px !important; height: 400px !important"></canvas> 
+                                
+                                </div>
+
+                            {% endif %}
+                    {% endfor %}
+                 </div>   
+                                 
+
+            
+            
+
+
+          </ul>
+
+
+    </section>
+       
+
+        <script>
+              var results = {{all_dict | safe }};
+              var keys = Object.keys(results);
+              
+              
+              keys.forEach(element => {
+                
+                var data = results[element];
+                const  ctx      = document.getElementById(element+"-chart").getContext('2d');
+                 
+                 ctx.height = 400;
+                 ctx.width  = 400;
+                var km_labels = [];
+                var price_data = [];
+                for(var i=0; i< data.length; i++ ){
+                    km_labels.push(data[i]['bins']);
+                    price_data.push(data[i]['price']);
+                }
+
+                const yearChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+
+                        labels: km_labels,
+                        
+                        datasets: [{
+                            label : "Mean selling price (R) per KM range",
+                                data: price_data
+
+                        }]
+
+                    }
+                })
+              })              
+
+
+
+        </script>
+
+
+{% endblock %}

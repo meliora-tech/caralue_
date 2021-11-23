@@ -1,0 +1,124 @@
+{%  extends "layout.html" %}
+
+{% block custom_head %}
+<style>
+          .car-li{
+          width: 100%;
+          border: 1px solid #ddd; /* Add a border to all links */
+          margin-top: -1px; /* Prevent double borders */
+          background-color: #f6f6f6; /* Grey background color */
+          padding: 12px; /* Add some padding */
+          text-decoration: none; /* Remove default text underline */
+          font-size: 18px; /* Increase the font-size */
+          color: black; /* Add a black text color */
+          display: block; /* Make it into a block element to fill the whole list */        
+      }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Main header -->
+<section class="container text-center">
+    <br>
+    <h1>Thinking about selling your car?</h1>
+    <h3> Find the current market value of your car </h3>
+</section>
+
+<!-- Search section  -->
+<section class="container text-center">
+    <br>
+    <form class="form" method="POST" action="{{url_for('search_term')}}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.car(class="form-control",placeholder="Polo 1.6", onkeyup="search_term(this)") }}
+            <!--<input type="text" id="car" class="form-control" placeholder="VW Polo 1.6" name="car" onkeyup="search_term(this)" required> -->
+            <ul id="cars-ul">
+            </ul>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                   
+                   <!-- <input type="number" id="year" class="form-control" class="year" placeholder="Year, e.g. 2016" required>-->
+                </div>
+                <div class="col-6">
+                   
+                    <!--<input type="number" id="mileage" class="form-control" class="mileage" placeholder="Mileage (KM), e.g. 152000" required> -->
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- -->
+        {{ form.submit(class="btn btn-success") }}
+        <!-- <button class="btn btn-success" type="submit">Submit</button>-->
+    </form>
+
+</section>
+
+
+<script>
+    var url = window.location.protocol +"//" + window.location.hostname+":" + window.location.port;
+    console.log(url);
+   function search_term(e){
+            console.log(e.value);
+
+            if(e.value ==''){
+                console.log('Empty string. No search')
+                ul = document.getElementById("cars-ul");
+                ul.innerText = "";
+            }else {
+                // Do an ajax request to the backend based on the term
+
+                var xhttp = new XMLHttpRequest();
+
+
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        console.log(this.responseText);
+                        ul = document.getElementById("cars-ul");
+                        ul.innerText = "";
+
+                        var results = JSON.parse(this.responseText);
+                        if(results["ans"].length != 0){
+                            for(var i = 0; i < results["ans"].length; i++){
+
+                                var text = document.createTextNode(results["ans"][i]);
+                                    var li   = document.createElement("li");
+                                    li.setAttribute("onclick","addCar(this)");
+                                    li.setAttribute("class","car-li");
+
+                                    li.appendChild(text);
+                                    ul.appendChild(li);                  
+                                }
+                        }
+                        
+
+                    }
+                }
+
+                xhttp.open("GET",url+"/search?query="+e.value);
+                xhttp.send();
+                
+            }
+   }
+
+
+   function addCar(e){
+       // Add the selected car
+       var inp = document.getElementById("car");
+       inp.value = "";
+       inp.value = e.innerText;
+       ul = document.getElementById("cars-ul");
+       ul.innerText = "";
+
+
+
+   }
+
+</script>
+
+{% endblock  %}
