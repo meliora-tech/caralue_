@@ -37,9 +37,20 @@
 
 ## Usage
 
-Here is a video:
-
-
-
 https://user-images.githubusercontent.com/94899769/197335931-d9390966-0052-4896-8364-94a2bf8fab48.mp4
 
+## Roadmap
+
+- [ ] Add more dealers
+
+- [ ] Make data exportable as csv file
+
+
+## License
+
+MIT 
+
+
+## Contact
+
+Email - ntuthuko@zetra.io
