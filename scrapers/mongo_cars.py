@@ -24,7 +24,7 @@ car_collection    = db["cars"]
 
 # Get the data
 car_dir = "cars-20211112"
-saved_dir = "C://Users//27608//Documents//Meliora Technologies//MVP//Car pricing//data//"+car_dir
+saved_dir = "data//"+car_dir
 
 # Get the files
 csv_files = glob.glob1(saved_dir, "*.csv")

@@ -33,6 +33,27 @@
 
 <img src="static/images/website.PNG" alt="home-page">
 
+### Built With
+
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+
+- [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+
+- [MongoDB](https://www.mongodb.com/)
+
+- [Selenium](https://www.selenium.dev/documentation/webdriver/)
+
+
+## Getting Started
+
+ - Have a MongoDB URI.
+
+ - Run the scrapers in the scrapers folder. Create also a data folder to save all scraped info.
+
+ - Upload the data into your mongo collection. Run `mongo_cars.py`
+
+ - Start the application: <code> python app.py </code>
+
 
 
 ## Usage

@@ -131,7 +131,7 @@ df["mileage"] = pd.to_numeric(df["mileage"],errors='coerce')
 # Remove the year model in the names
 df["name"] = df["name"].str.replace("^\d{4}","").str.strip()
 
-save_dir = "C://Users//27608//Documents//Meliora Technologies//MVP//Car pricing//data//"
+save_dir = "data//"
 
 # Save all data in data/cars-'date'/
 

@@ -95,7 +95,7 @@ df["price"]   = pd.to_numeric(df["price"], errors='coerce')
 df["mileage"] = pd.to_numeric(df["mileage"],errors='coerce')
 
 
-save_dir = "C://Users//27608//Documents//Meliora Technologies//MVP//Car pricing//data//"
+save_dir = "data//"
 
 # Save all data in data/cars-'date'/
 new_dir = "cars-"+date 
