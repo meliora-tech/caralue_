@@ -3,7 +3,7 @@
 {% block custom_head %}
 <style>
           .car-li{
-          width: 100%;
+          width: 75%;
           border: 1px solid #ddd; /* Add a border to all links */
           margin-top: -1px; /* Prevent double borders */
           background-color: #f6f6f6; /* Grey background color */
@@ -14,6 +14,14 @@
           display: block; /* Make it into a block element to fill the whole list */        
       }
 
+
+ input#car:focus{
+      border-color: #525252 !important;
+  }    
+
+  input#submit:focus {
+      outline:0;
+  }
 </style>
 
 {% endblock %}
@@ -21,50 +29,93 @@
 {% block content %}
 
 <!-- Main header -->
-<section class="container text-center">
-    <br>
-    <h1>Thinking about selling your car?</h1>
-    <h3> Find the current market value of your car </h3>
-</section>
+<div class="container-fluid" style="background-color: #1f1f1f;">
+            <section class="container text-center" >
+                <br>
+                <br>
+                <br>
+                <br>
+                <h1 style="color:#fff; font-weight: bold; font-size: 48px;">Thinking about selling your car?</h1>
+                <h3 style="color:#fff; font-weight: 500; "> Find the current market value of your car </h3>
+            </section>
 
-<!-- Search section  -->
-<section class="container text-center">
-    <br>
-    <form class="form" method="POST" action="{{url_for('search_term')}}">
-        {{ form.hidden_tag() }}
-        <div class="form-group">
-            {{ form.car(class="form-control",placeholder="Polo 1.6", onkeyup="search_term(this)") }}
-            <!--<input type="text" id="car" class="form-control" placeholder="VW Polo 1.6" name="car" onkeyup="search_term(this)" required> -->
-            <ul id="cars-ul">
-            </ul>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-6">
-                   
-                   <!-- <input type="number" id="year" class="form-control" class="year" placeholder="Year, e.g. 2016" required>-->
+
+
+        <!-- Search section  -->
+        <section class="container text-center">
+            <br>
+            <form class="form" method="POST" action="{{url_for('search_term')}}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.car(class="form-control search-input",placeholder="Search here for your car. Eg. Polo 1.6", onkeyup="search_term(this)", style="width:45%; margin-left: 300px") }}
+                    <!--<input type="text" id="car" class="form-control" placeholder="VW Polo 1.6" name="car" onkeyup="search_term(this)" required> -->
+                    <ul id="cars-ul">
+                    </ul>
                 </div>
-                <div class="col-6">
-                   
-                    <!--<input type="number" id="mileage" class="form-control" class="mileage" placeholder="Mileage (KM), e.g. 152000" required> -->
-                    
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                        
+                        <!-- <input type="number" id="year" class="form-control" class="year" placeholder="Year, e.g. 2016" required>-->
+                        </div>
+                        <div class="col-6">
+                        
+                            <!--<input type="number" id="mileage" class="form-control" class="mileage" placeholder="Mileage (KM), e.g. 152000" required> -->
+                            
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <br>
+                <!-- -->
+                {{ form.submit(class="btn", style="background-color: #525252; border-color: #525252; width: 150px; color: #fff") }}
+                <!-- <button class="btn btn-success" type="submit">Submit</button>-->
+            </form>
 
-        <!-- -->
-        {{ form.submit(class="btn btn-success") }}
-        <!-- <button class="btn btn-success" type="submit">Submit</button>-->
-    </form>
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+</div>
 
-</section>
+<!-- Caralue price collection -->
+<div  class="container-fluid" style="background-color: #d6d6d6;">
+    <section class="container">
+        <br>
+        <div class="d-flex justify-content-center">
+          <p style="font-size: 20px; font-weight: 200; ">Caralue collects car prices on a weekly basis from different online dealers.</p>
+        </div>  
+      
+      
+      
+      </section>
+</div>
 
+
+
+<section class="text-center">
+    <br>
+    <br>
+       <a href="https://www.webuycars.co.za/" target="_blank"> <img src="static/images/we-buy-cars.svg" style="max-height: 150px; max-width: 150px; margin-right: 50px;filter: grayscale(75%);" >  </a> 
+       <a href="https://www.autotrader.co.za/" target="_blank"> <img src="static/images/autotrader-logo.svg" style="max-height: 150px; max-width: 150px; margin-right: 50px; filter: grayscale(75%);" >  </a> 
+
+       <a href="https://motus.cars/" target="_blank"> <img src="static/images/motus-logo.png" style="max-height: 150px; max-width: 150px; filter: grayscale(75%);" > </a> 
+</section>    
+
+
+
+<footer style="background-color: #1f1f1f;">
+    <div class="text-center" style="color: #d6d6d6;">
+        <p>ntuthuko@zetra.io</p>
+    </div>
+
+</footer>
 
 <script>
     var url = window.location.protocol +"//" + window.location.hostname+":" + window.location.port;
-    console.log(url);
+    
    function search_term(e){
-            console.log(e.value);
+            
 
             if(e.value ==''){
                 console.log('Empty string. No search')

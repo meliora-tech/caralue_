@@ -10,12 +10,22 @@
 
 {% block content %}
 
+<br>
+<br>
 <!-- Average price and median -->
 <section class="container text-center" >
     <br>
-    <h3> {{car_name}} </h3>
+    <br>
+    <div class="container-fluid" style="background-color: #1f1f1f;">
+        <br>
+        <h3 style="color: #fff;"> {{car_name}} </h3>
+    
+        <br>
+    </div>
 
     <br>
+    <br>
+
     <h5> Average price and mileage by Model year</h5>
     
        <table class="table">
@@ -175,7 +185,7 @@
                         labels: km_labels,
                         
                         datasets: [{
-                            label : "Mean selling price (R) per KM range",
+                            label : "Average price (R) per KM range",
                                 data: price_data
 
                         }]
