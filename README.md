@@ -32,3 +32,13 @@
 ## About The Project
 
 <img src="static/images/website.PNG" alt="home-page">
+
+
+
+## Usage
+
+Here is a video:
+
+<video>
+    <source src="static/videos/video.mkv">
+</video>
