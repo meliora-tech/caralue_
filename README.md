@@ -33,6 +33,23 @@
 
 <img src="static/images/website.PNG" alt="home-page">
 
+<p>Thinking about selling your car?</p>
+
+<p>The pandemic really upended a lot of people's lives.
+Jobs are gone, prices are increasing, government has no concrete plans to stimulate growth and we still need
+to live.  Part of surviving this challenging period has been to dip into savings and doing a lot of cost 
+reduction.  </p>
+
+<p>One of the biggest cost probably is the car installment.  Selling your car or paying a less amount can go
+a long way into surviving the current economic climate. But how much is your car going for? Caralue is here
+to help with that.  </p>
+
+<p>We collect prices of different car brands from several online sources to give you an estimate of how your car
+is probably worth in the market. Of course several other factors may come into play when you decide to sell
+your car. But it never hurts to have a ballpark figure before entering the market. </p>
+
+
+
 ### Built With
 
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/)

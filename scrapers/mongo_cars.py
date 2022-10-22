@@ -15,7 +15,7 @@ import glob
 
 
 
-client = pymongo.MongoClient("mongodb+srv://meliora1:5XtcvFVXZQc2bUJ@cluster0.2l3yg.mongodb.net/carsdb?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://")
 
 db      = client["cars_db"]
 
